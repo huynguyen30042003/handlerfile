@@ -1,0 +1,5 @@
+huy;hue;10
+huydn;danang;11
+huyhp;haiphong;8
+huyqn;quangnam;14
+huydn;dongnai;11

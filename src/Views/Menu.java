@@ -1,7 +1,6 @@
 
 package Views;
 
-import Common.Algorithm;
 import Common.Library;
 
 import java.io.FileNotFoundException;

@@ -1,10 +1,14 @@
 package Common;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import Model.Person;
 
@@ -57,5 +61,42 @@ public class Algorithm {
         }
         System.out.println();
 
+    }
+
+    public  boolean copyWordOneTimes(String source, String destination) throws Exception {
+        File sourceFile = new File(source);
+        File destinationFile = new File(destination);
+
+        if (!sourceFile.exists()) {
+            throw new Exception("Source file path doesn't exist.");
+        }
+
+        if (!destinationFile.exists()) {
+            throw new Exception("Destination file path doesn't exist.");
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(sourceFile));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFile))) {
+
+            String line;
+            Set<String> words = new HashSet<>();
+
+            while ((line = reader.readLine()) != null) {
+                String[] wordsInLine = line.split("\\s+");
+
+                for (String word : wordsInLine) {
+                    if (!words.contains(word)) {
+                        writer.write(word);
+                        writer.newLine();
+                        words.add(word);
+                    }
+                }
+            }
+
+            return true;
+
+        } catch (IOException e) {
+            throw new Exception("Error reading or writing files.");
+        }
     }
 }
